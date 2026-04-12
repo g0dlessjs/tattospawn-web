@@ -52,8 +52,8 @@ export default function Navbar() {
             <motion.img
               src="/logo-nav.png"
               alt="TattoSpawn Logo"
-              className="h-10 md:h-12 lg:h-14 w-auto"
-              whileHover={{ scale: 1.5 }}
+              className="h-12 sm:h-14 md:h-16 lg:h-20 w-auto"
+              whileHover={{ scale: 1.05 }}
               transition={{ type: "spring", stiffness: 300 }}
             />
           </a>
@@ -82,7 +82,7 @@ export default function Navbar() {
           {/* Mobile menu button */}
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="md:hidden p-2 text-white hover:text-primary-500 transition-colors"
+            className="md:hidden p-2 text-white hover:text-primary-500 transition-colors relative z-50"
             aria-label={isOpen ? "Cerrar menú" : "Abrir menú"}
           >
             {isOpen ? <X size={24} /> : <Menu size={24} />}
@@ -94,19 +94,20 @@ export default function Navbar() {
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.3 }}
-            className="md:hidden bg-dark-900/95 backdrop-blur-md border-t border-dark-800"
+            key="mobile-menu"
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.25 }}
+            className="md:hidden bg-gradient-to-b from-gray-900 via-dark-950 to-dark-950 border-t border-dark-800 absolute top-20 left-0 right-0 shadow-lg shadow-dark-950/50 z-40"
           >
-            <div className="px-4 py-6 space-y-4">
+            <div className="px-6 py-6 space-y-5">
               {navLinks.map((link) => (
                 <a
                   key={link.name}
                   href={link.href}
                   onClick={(e) => handleClick(e, link.href)}
-                  className="block text-dark-200 hover:text-primary-500 transition-colors py-2 font-medium"
+                  className="block text-dark-200 hover:text-primary-500 transition-colors py-2 text-lg font-medium"
                 >
                   {link.name}
                 </a>

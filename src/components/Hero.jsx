@@ -1,170 +1,236 @@
-import { motion } from 'framer-motion'
-import { Calendar, ArrowDown } from 'lucide-react'
+import { motion } from "framer-motion";
+import { Calendar, Sparkles } from "lucide-react";
 
 export default function Hero() {
   const handleScroll = () => {
-    document.querySelector('#about')?.scrollIntoView({ behavior: 'smooth' })
-  }
+    document.querySelector("#about")?.scrollIntoView({ behavior: "smooth" });
+  };
 
   return (
     <section
       id="hero"
-      className="relative min-h-screen flex items-center justify-center overflow-hidden"
+      className="relative min-h-screen flex items-center overflow-hidden"
       aria-label="Sección principal - TattoSpawn"
     >
-      {/* Pure dark background */}
+      {/* ===== BACKGROUND LAYERS ===== */}
       <div className="absolute inset-0 bg-dark-950" />
 
-      {/* Green radial glow */}
+      {/* Large glow behind logo */}
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
         <div
-          className="w-[500px] h-[500px] md:w-[700px] md:h-[700px] lg:w-[900px] lg:h-[900px] rounded-full opacity-60"
+          className="w-[600px] h-[600px] md:w-[1200px] md:h-[1200px] rounded-full"
           style={{
-            background: 'radial-gradient(circle, rgba(57,255,20,0.15) 0%, rgba(57,255,20,0.05) 35%, transparent 65%)',
+            background:
+              "radial-gradient(circle, rgba(57,255,20,0.12) 0%, rgba(57,255,20,0.04) 40%, transparent 65%)",
           }}
         />
       </div>
 
-      {/* Animated particles */}
+      {/* Corner accents */}
+      <div className="absolute top-8 left-8 w-16 h-16 border-l-2 border-t-2 border-primary-600/20 rounded-tl-lg pointer-events-none hidden md:block" />
+      <div className="absolute top-8 right-8 w-16 h-16 border-r-2 border-t-2 border-primary-600/20 rounded-tr-lg pointer-events-none hidden md:block" />
+      <div className="absolute bottom-8 left-8 w-16 h-16 border-l-2 border-b-2 border-primary-600/20 rounded-bl-lg pointer-events-none hidden md:block" />
+      <div className="absolute bottom-8 right-8 w-16 h-16 border-r-2 border-b-2 border-primary-600/20 rounded-br-lg pointer-events-none hidden md:block" />
+
+      {/* ===== PARTICLES ===== */}
       <div className="absolute inset-0 z-10 overflow-hidden">
         {[...Array(40)].map((_, i) => (
           <motion.div
             key={i}
             className="absolute rounded-full"
             style={{
-              width: `${1 + Math.random() * 4}px`,
-              height: `${1 + Math.random() * 4}px`,
+              width: `${1 + Math.random() * 3}px`,
+              height: `${1 + Math.random() * 3}px`,
               left: `${Math.random() * 100}%`,
               top: `${Math.random() * 100}%`,
-              background: `rgba(57, 255, 20, ${0.1 + Math.random() * 0.4})`,
+              background: `rgba(57, 255, 20, ${0.08 + Math.random() * 0.35})`,
             }}
             animate={{
-              y: [0, -50, 0],
-              opacity: [0, 0.7, 0],
+              y: [0, -60, 0],
+              opacity: [0, 0.8, 0],
             }}
             transition={{
-              duration: 4 + Math.random() * 3,
+              duration: 5 + Math.random() * 4,
               repeat: Infinity,
-              delay: Math.random() * 4,
+              delay: Math.random() * 5,
             }}
           />
         ))}
       </div>
 
-      {/* Subtle grid pattern overlay */}
-      <div
-        className="absolute inset-0 opacity-[0.03]"
-        style={{
-          backgroundImage: 'linear-gradient(rgba(57,255,20,0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(57,255,20,0.5) 1px, transparent 1px)',
-          backgroundSize: '60px 60px',
-        }}
-      />
-
-      {/* Content */}
-      <div className="relative z-20 flex flex-col items-center px-4 max-w-5xl mx-auto">
-        {/* Logo - massive */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.6, y: 40 }}
-          animate={{ opacity: 1, scale: 1, y: 0 }}
-          transition={{ duration: 1, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-          className="mb-8 md:mb-12"
-        >
-          <motion.img
-            src="/logo3.png"
-            alt="TattoSpawn Logo"
-            className="w-[18rem] sm:w-[24rem] md:w-[32rem] lg:w-[40rem] xl:w-[48rem] h-auto"
-            animate={{
-              filter: [
-                "drop-shadow(0 0 20px rgba(57, 255, 20, 0.25))",
-                "drop-shadow(0 0 40px rgba(57, 255, 20, 0.45))",
-                "drop-shadow(0 0 20px rgba(57, 255, 20, 0.25))",
-              ],
-            }}
-            transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut" }}
-          />
-        </motion.div>
-
-        {/* Decorative line */}
-        <motion.div
-          initial={{ opacity: 0, scaleX: 0 }}
-          animate={{ opacity: 1, scaleX: 1 }}
-          transition={{ duration: 0.8, delay: 0.6 }}
-          className="w-24 md:w-32 h-px mb-8"
-          style={{
-            background: 'linear-gradient(90deg, transparent, rgba(57,255,20,0.6), transparent)',
-          }}
-        />
-
-        {/* Tagline */}
-        <motion.p
-          className="font-display text-lg sm:text-xl md:text-2xl lg:text-3xl text-dark-100 mb-3 tracking-[0.15em] uppercase text-center"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.8 }}
-        >
-          Tinta que cuenta <span className="text-primary-500 font-bold">tu historia</span>
-        </motion.p>
-
-        {/* Description */}
-        <motion.p
-          className="text-dark-400 text-sm md:text-base max-w-lg mx-auto mb-10 text-center leading-relaxed font-light"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 1 }}
-        >
-          Diseños únicos y personalizados que transforman tus ideas en obras de arte permanentes
-        </motion.p>
-
-        {/* CTA Buttons */}
-        <motion.div
-          className="flex flex-col sm:flex-row gap-4 justify-center items-center"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1.2 }}
-        >
-          <a
-            href="#booking"
-            onClick={(e) => {
-              e.preventDefault()
-              document.querySelector('#booking')?.scrollIntoView({ behavior: 'smooth' })
-            }}
-            className="group relative bg-primary-600 hover:bg-primary-500 text-dark-950 font-bold px-10 py-4 rounded-lg transition-all duration-300 transform hover:scale-105 active:scale-95 flex items-center gap-3 text-base md:text-lg overflow-hidden"
+      {/* ===== MAIN CONTENT - TWO COLUMNS ===== */}
+      <div className="relative z-20 w-full max-w-7xl mx-auto px-6 lg:px-8 pt-24 pb-8">
+        <div className="flex flex-col-reverse lg:flex-row items-center justify-between gap-8 lg:gap-12">
+          {/* LEFT - MASSIVE LOGO */}
+          <motion.div
+            className="flex-shrink-0 w-full lg:w-5/12 flex justify-center lg:justify-start"
+            initial={{ opacity: 0, x: -60 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 1, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
           >
-            <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700" />
-            <Calendar size={20} />
-            Reservar Hora
-          </a>
-          <a
-            href="#gallery"
-            onClick={(e) => {
-              e.preventDefault()
-              document.querySelector('#gallery')?.scrollIntoView({ behavior: 'smooth' })
-            }}
-            className="group relative border border-primary-600/60 text-primary-500 hover:bg-primary-600 hover:text-dark-950 hover:border-primary-500 font-bold px-10 py-4 rounded-lg transition-all duration-300 transform hover:scale-105 active:scale-95 flex items-center gap-3 text-base md:text-lg"
+            <div className="relative">
+              {/* Glow behind logo */}
+              <div
+                className="absolute inset-0 -inset-16 md:-inset-28 rounded-full opacity-25 blur-3xl"
+                style={{
+                  background:
+                    "radial-gradient(circle, rgba(57,255,20,0.25), transparent)",
+                }}
+              />
+              <motion.img
+                src="/logo3.png"
+                alt="TattoSpawn Logo"
+                className="relative w-[85vw] sm:w-[65vw] md:w-[40vw] lg:w-[32rem] xl:w-[40rem] h-auto max-w-none"
+                animate={{
+                  filter: [
+                    "drop-shadow(0 0 30px rgba(57, 255, 20, 0.2))",
+                    "drop-shadow(0 0 70px rgba(57, 255, 20, 0.45))",
+                    "drop-shadow(0 0 30px rgba(57, 255, 20, 0.2))",
+                  ],
+                }}
+                transition={{
+                  duration: 4,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
+              />
+            </div>
+          </motion.div>
+
+          {/* RIGHT - TEXT CONTENT */}
+          <motion.div
+            className="flex flex-col items-center lg:items-start w-full lg:w-7/12"
+            initial={{ opacity: 0, x: 60 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 1, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
           >
-            Ver Trabajos
-          </a>
-        </motion.div>
+            {/* Top label */}
+            <div className="flex items-center gap-3 mb-4">
+              <div className="w-6 h-px bg-primary-600/60" />
+              <span className="font-display text-[10px] sm:text-xs tracking-[0.3em] uppercase text-primary-500/80 font-semibold">
+                Estudio de Tatuajes Profesional
+              </span>
+              <div className="w-6 h-px bg-primary-600/60" />
+            </div>
+
+            {/* Tagline */}
+            <h2 className="font-display text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-dark-50 mb-3 text-center lg:text-left tracking-[0.06em] leading-tight">
+              Tinta que cuenta{" "}
+              <span className="gradient-text font-bold">tu historia</span>
+            </h2>
+
+            {/* Sub-description */}
+            <p className="text-dark-400 text-sm md:text-base max-w-lg mx-auto lg:mx-0 mb-5 text-center lg:text-left leading-relaxed font-light tracking-wide">
+              Diseños exclusivos creados a medida — cada pieza es una obra de
+              arte única e irrepetible
+            </p>
+
+            {/* Decorative divider */}
+            <div className="flex items-center gap-3 mb-5">
+              <div
+                className="w-10 sm:w-16 h-px"
+                style={{
+                  background:
+                    "linear-gradient(90deg, transparent, rgba(57,255,20,0.5))",
+                }}
+              />
+              <Sparkles size={12} className="text-primary-500/70" />
+              <div
+                className="w-10 sm:w-16 h-px"
+                style={{
+                  background:
+                    "linear-gradient(270deg, transparent, rgba(57,255,20,0.5))",
+                }}
+              />
+            </div>
+
+            {/* CTA BUTTONS */}
+            <div className="flex flex-col sm:flex-row gap-3 justify-center lg:justify-start items-center mb-5">
+              {/* Primary CTA */}
+              <a
+                href="#booking"
+                onClick={(e) => {
+                  e.preventDefault();
+                  document
+                    .querySelector("#booking")
+                    ?.scrollIntoView({ behavior: "smooth" });
+                }}
+                className="group relative bg-primary-600 hover:bg-primary-500 text-dark-950 font-bold px-10 py-3 rounded-lg transition-all duration-500 transform hover:scale-105 hover:shadow-2xl hover:shadow-primary-600/25 active:scale-95 flex items-center gap-2 text-base overflow-hidden"
+              >
+                <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/25 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700 ease-out" />
+                <Calendar size={16} className="relative" />
+                <span className="relative">Reservar Hora</span>
+              </a>
+
+              {/* Secondary CTA */}
+              <a
+                href="#gallery"
+                onClick={(e) => {
+                  e.preventDefault();
+                  document
+                    .querySelector("#gallery")
+                    ?.scrollIntoView({ behavior: "smooth" });
+                }}
+                className="group relative border border-primary-600/50 text-primary-500 hover:bg-primary-600/10 hover:border-primary-500/80 font-semibold px-10 py-3 rounded-lg transition-all duration-500 transform hover:scale-105 active:scale-95 flex items-center gap-2 text-base"
+              >
+                <Sparkles size={14} className="relative" />
+                <span className="relative">Ver Trabajos</span>
+              </a>
+            </div>
+
+            {/* STATS BAR */}
+            <div className="flex items-center justify-center lg:justify-start gap-6 md:gap-10">
+              {[
+                { value: "8+", label: "Años" },
+                { value: "2K+", label: "Tatuajes" },
+                { value: "1.5K+", label: "Clientes" },
+              ].map((stat, i) => (
+                <motion.div
+                  key={stat.label}
+                  initial={{ opacity: 0, y: 15 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 1 + i * 0.15 }}
+                  className="text-center"
+                >
+                  <p className="font-display text-xl md:text-2xl font-bold text-white">
+                    {stat.value}
+                  </p>
+                  <p className="text-dark-500 text-xs tracking-[0.15em] uppercase mt-1">
+                    {stat.label}
+                  </p>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
+        </div>
       </div>
 
-      {/* Scroll indicator */}
+      {/* ===== SCROLL INDICATOR ===== */}
       <motion.button
         onClick={handleScroll}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 text-dark-500 hover:text-primary-500 transition-colors"
+        className="absolute bottom-6 left-1/2 -translate-x-1/2 z-20 group"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 1.6 }}
+        transition={{ delay: 1.8 }}
         aria-label="Scroll to about section"
       >
-        <motion.div
-          animate={{ y: [0, 10, 0] }}
-          transition={{ duration: 1.5, repeat: Infinity }}
-          className="flex flex-col items-center gap-2"
-        >
-          <span className="text-[10px] tracking-[0.3em] uppercase text-dark-500">Scroll</span>
-          <ArrowDown size={20} />
-        </motion.div>
+        <div className="flex flex-col items-center gap-2">
+          <span className="text-[9px] tracking-[0.35em] uppercase text-dark-500 group-hover:text-primary-500 transition-colors">
+            Explorar
+          </span>
+          <div className="w-5 h-7 rounded-full border border-dark-600 group-hover:border-primary-600/60 transition-colors flex items-start justify-center p-1">
+            <motion.div
+              animate={{ y: [0, 8, 0] }}
+              transition={{
+                duration: 1.8,
+                repeat: Infinity,
+                ease: "easeInOut",
+              }}
+              className="w-1 h-2 rounded-full bg-primary-500/70"
+            />
+          </div>
+        </div>
       </motion.button>
     </section>
-  )
+  );
 }
