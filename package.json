@@ -1,0 +1,38 @@
+{
+  "name": "tattospawn-web",
+  "version": "1.0.0",
+  "description": "Web profesional para TattoSpawn - Estudio de Tatuajes",
+  "main": "index.js",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "keywords": [
+    "tatuajes",
+    "tattoo",
+    "estudio",
+    "arte",
+    "tattospawn"
+  ],
+  "author": "TattoSpawn",
+  "license": "ISC",
+  "type": "module",
+  "dependencies": {
+    "@hookform/resolvers": "^5.2.2",
+    "framer-motion": "^12.38.0",
+    "lucide-react": "^1.8.0",
+    "react": "^19.2.5",
+    "react-dom": "^19.2.5",
+    "react-hook-form": "^7.72.1",
+    "react-router-dom": "^7.14.0",
+    "zod": "^4.3.6"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^6.0.1",
+    "autoprefixer": "^10.4.16",
+    "postcss": "^8.4.31",
+    "tailwindcss": "^3.4.1",
+    "vite": "^8.0.8"
+  }
+}
