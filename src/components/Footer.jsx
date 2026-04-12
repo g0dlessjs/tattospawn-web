@@ -46,7 +46,7 @@ export default function Footer() {
 
           {/* Contact Info */}
           <div>
-            <h4 className="text-white font-semibold mb-4">Contacto</h4>
+            <h4 className="font-display text-base text-white font-semibold mb-4 tracking-wide">Contacto</h4>
             <ul className="space-y-3">
               <li>
                 <a href="mailto:info@tattospawn.com" className="flex items-center gap-3 text-dark-400 hover:text-primary-500 transition-colors">
@@ -71,7 +71,7 @@ export default function Footer() {
 
           {/* Hours */}
           <div>
-            <h4 className="text-white font-semibold mb-4">Horario</h4>
+            <h4 className="font-display text-base text-white font-semibold mb-4 tracking-wide">Horario</h4>
             <ul className="space-y-2 text-dark-400">
               <li className="flex justify-between">
                 <span>Lunes - Viernes</span>

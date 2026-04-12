@@ -129,7 +129,7 @@ export default function Gallery() {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <p className="text-primary-500 font-medium tracking-widest uppercase mb-2">Portfolio</p>
+          <p className="text-primary-500 font-display font-semibold tracking-[0.2em] uppercase mb-3 text-sm">Portfolio</p>
           <h2 className="section-title">
             Mi <span className="gradient-text">Galería</span>
           </h2>

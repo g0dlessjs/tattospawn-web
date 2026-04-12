@@ -164,7 +164,7 @@ export default function Booking() {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <p className="text-primary-500 font-medium tracking-widest uppercase mb-2">Contacto</p>
+          <p className="text-primary-500 font-display font-semibold tracking-[0.2em] uppercase mb-3 text-sm">Contacto</p>
           <h2 className="section-title">
             Reserva tu <span className="gradient-text">Hora</span>
           </h2>
