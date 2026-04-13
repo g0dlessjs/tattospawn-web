@@ -52,6 +52,8 @@ export default function Navbar() {
             <motion.img
               src="/logo-nav.png"
               alt="TattoSpawn Logo"
+              width="160"
+              height="80"
               className="h-12 sm:h-14 md:h-16 lg:h-20 w-auto"
               whileHover={{ scale: 1.05 }}
               transition={{ type: "spring", stiffness: 300 }}

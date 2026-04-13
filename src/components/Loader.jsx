@@ -11,9 +11,11 @@ export default function Loader() {
           transition={{ duration: 0.8, ease: "easeOut" }}
           className="mb-8"
         >
-          <motion.img 
+          <motion.img
             src="/logo3.png"
             alt="TattoSpawn"
+            width="256"
+            height="256"
             className="w-48 md:w-64 mx-auto"
             animate={{ 
               filter: [

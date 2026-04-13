@@ -16,7 +16,7 @@ export default function Footer() {
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
             >
-              <img src="/logo3.png" alt="TattoSpawn" className="h-16 w-auto" />
+              <img src="/logo3.png" alt="TattoSpawn" width="200" height="100" className="h-16 w-auto" />
             </motion.h3>
             <p className="text-dark-400 max-w-md mb-6">
               Estudio de tatuajes profesional especializado en diseños únicos y personalizados. 

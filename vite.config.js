@@ -6,5 +6,11 @@ export default defineConfig({
   server: {
     port: 3000,
     open: true
-  }
+  },
+  build: {
+    target: 'esnext',
+    minify: 'esbuild',
+    sourcemap: false,
+    chunkSizeWarningLimit: 1000,
+  },
 })

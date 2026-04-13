@@ -51,8 +51,11 @@ export default function About() {
                 <img
                   src="/hector.jpg"
                   alt="TattoSpawn - Tatuador profesional en su estudio"
+                  width="400"
+                  height="533"
                   className="w-full h-full object-cover"
                   loading="lazy"
+                  decoding="async"
                 />
               </div>
               {/* Decorative border */}

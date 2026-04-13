@@ -6,55 +6,55 @@ import { X, ZoomIn } from 'lucide-react'
 const galleryImages = [
   {
     id: 1,
-    src: 'https://images.unsplash.com/photo-1590246814883-57c511e9caaf?q=80&w=800&auto=format&fit=crop',
+    src: 'https://images.unsplash.com/photo-1590246814883-57c511e9caaf?q=80&w=400&auto=format&fit=crop',
     alt: 'Tatuaje de realismo en brazo',
     category: 'Realismo',
   },
   {
     id: 2,
-    src: 'https://images.unsplash.com/photo-1611501275019-9b5cda994e8d?q=80&w=800&auto=format&fit=crop',
+    src: 'https://images.unsplash.com/photo-1611501275019-9b5cda994e8d?q=80&w=400&auto=format&fit=crop',
     alt: 'Diseño blackwork geométrico',
     category: 'Blackwork',
   },
   {
     id: 3,
-    src: 'https://images.unsplash.com/photo-1562962230-16e4623d36e6?q=80&w=800&auto=format&fit=crop',
+    src: 'https://images.unsplash.com/photo-1562962230-16e4623d36e6?q=80&w=400&auto=format&fit=crop',
     alt: 'Tatuaje neotradicional colorido',
     category: 'Neotradicional',
   },
   {
     id: 4,
-    src: 'https://images.unsplash.com/photo-1598371839696-5c5bb00bdc28?q=80&w=800&auto=format&fit=crop',
+    src: 'https://images.unsplash.com/photo-1598371839696-5c5bb00bdc28?q=80&w=400&auto=format&fit=crop',
     alt: 'Tatuaje fine line delicado',
     category: 'Fine Line',
   },
   {
     id: 5,
-    src: 'https://images.unsplash.com/photo-1542359649-6068fbd1d18c?q=80&w=800&auto=format&fit=crop',
+    src: 'https://images.unsplash.com/photo-1542359649-6068fbd1d18c?q=80&w=400&auto=format&fit=crop',
     alt: 'Diseño geométrico abstracto',
     category: 'Geométrico',
   },
   {
     id: 6,
-    src: 'https://images.unsplash.com/photo-1614094082869-cd4e4b2b0e24?q=80&w=800&auto=format&fit=crop',
+    src: 'https://images.unsplash.com/photo-1614094082869-cd4e4b2b0e24?q=80&w=400&auto=format&fit=crop',
     alt: 'Cover-up transformación',
     category: 'Cover-up',
   },
   {
     id: 7,
-    src: 'https://images.unsplash.com/photo-1568515045052-f9a854d70bfd?q=80&w=800&auto=format&fit=crop',
+    src: 'https://images.unsplash.com/photo-1568515045052-f9a854d70bfd?q=80&w=400&auto=format&fit=crop',
     alt: 'Tatuaje de retrato realista',
     category: 'Realismo',
   },
   {
     id: 8,
-    src: 'https://images.unsplash.com/photo-1581783898377-1c85bf937427?q=80&w=800&auto=format&fit=crop',
+    src: 'https://images.unsplash.com/photo-1581783898377-1c85bf937427?q=80&w=400&auto=format&fit=crop',
     alt: 'Diseño minimalista',
     category: 'Fine Line',
   },
   {
     id: 9,
-    src: 'https://images.unsplash.com/photo-1578301978693-85fa9c0320b9?q=80&w=800&auto=format&fit=crop',
+    src: 'https://images.unsplash.com/photo-1578301978693-85fa9c0320b9?q=80&w=400&auto=format&fit=crop',
     alt: 'Tatuaje de manga completa',
     category: 'Neotradicional',
   },
@@ -89,9 +89,12 @@ function ImageModal({ image, onClose }) {
         </button>
         
         <img
-          src={image.src}
+          src={image.src.replace('w=400', 'w=1200')}
           alt={image.alt}
+          width="1200"
+          height="1200"
           className="max-w-full max-h-[85vh] object-contain rounded-lg shadow-2xl"
+          loading="eager"
         />
         
         <div className="mt-4 text-center">
@@ -181,8 +184,11 @@ export default function Gallery() {
                 <img
                   src={image.src}
                   alt={image.alt}
+                  width="400"
+                  height="400"
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                   loading="lazy"
+                  decoding="async"
                 />
                 
                 {/* Overlay */}

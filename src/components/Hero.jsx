@@ -33,8 +33,8 @@ export default function Hero() {
       <div className="absolute bottom-8 right-8 w-16 h-16 border-r-2 border-b-2 border-primary-600/20 rounded-br-lg pointer-events-none hidden md:block" />
 
       {/* ===== PARTICLES ===== */}
-      <div className="absolute inset-0 z-10 overflow-hidden">
-        {[...Array(40)].map((_, i) => (
+      <div className="absolute inset-0 z-10 overflow-hidden" aria-hidden="true">
+        {[...Array(20)].map((_, i) => (
           <motion.div
             key={i}
             className="absolute rounded-full"
@@ -44,6 +44,7 @@ export default function Hero() {
               left: `${Math.random() * 100}%`,
               top: `${Math.random() * 100}%`,
               background: `rgba(57, 255, 20, ${0.08 + Math.random() * 0.35})`,
+              willChange: 'transform, opacity',
             }}
             animate={{
               y: [0, -60, 0],
@@ -80,6 +81,9 @@ export default function Hero() {
               <motion.img
                 src="/logo3.png"
                 alt="TattoSpawn Logo"
+                width="600"
+                height="600"
+                fetchpriority="high"
                 className="relative w-[85vw] sm:w-[65vw] md:w-[40vw] lg:w-[42rem] xl:w-[52rem] h-auto max-w-none"
                 animate={{
                   filter: [
