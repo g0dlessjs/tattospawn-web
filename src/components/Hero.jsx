@@ -63,7 +63,7 @@ export default function Hero() {
         <div className="flex flex-col-reverse lg:flex-row items-center justify-between gap-8 lg:gap-12">
           {/* LEFT - MASSIVE LOGO */}
           <motion.div
-            className="flex-shrink-0 w-full lg:w-5/12 flex justify-center lg:justify-start"
+            className="flex-shrink-0 w-full lg:w-6/12 flex justify-center lg:justify-start"
             initial={{ opacity: 0, x: -60 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 1, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
@@ -71,16 +71,16 @@ export default function Hero() {
             <div className="relative">
               {/* Glow behind logo */}
               <div
-                className="absolute inset-0 -inset-16 md:-inset-28 rounded-full opacity-25 blur-3xl"
+                className="absolute inset-0  md:-inset-40 rounded-full opacity-30 blur-3xl"
                 style={{
                   background:
-                    "radial-gradient(circle, rgba(57,255,20,0.25), transparent)",
+                    "radial-gradient(circle, rgba(57,255,20,0.3), transparent)",
                 }}
               />
               <motion.img
                 src="/logo3.png"
                 alt="TattoSpawn Logo"
-                className="relative w-[85vw] sm:w-[65vw] md:w-[40vw] lg:w-[32rem] xl:w-[40rem] h-auto max-w-none"
+                className="relative w-[85vw] sm:w-[65vw] md:w-[40vw] lg:w-[42rem] xl:w-[52rem] h-auto max-w-none"
                 animate={{
                   filter: [
                     "drop-shadow(0 0 30px rgba(57, 255, 20, 0.2))",
@@ -99,44 +99,44 @@ export default function Hero() {
 
           {/* RIGHT - TEXT CONTENT */}
           <motion.div
-            className="flex flex-col items-center lg:items-start w-full lg:w-7/12"
+            className="flex flex-col items-center lg:items-start w-full lg:w-6/12"
             initial={{ opacity: 0, x: 60 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 1, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
           >
             {/* Top label */}
-            <div className="flex items-center gap-3 mb-4">
-              <div className="w-6 h-px bg-primary-600/60" />
-              <span className="font-display text-[10px] sm:text-xs tracking-[0.3em] uppercase text-primary-500/80 font-semibold">
+            <div className="flex items-center gap-2 sm:gap-3 mb-5">
+              <div className="w-4 sm:w-9 h-px bg-primary-600/60" />
+              <span className="font-display text-[8px] sm:text-xs md:text-sm tracking-[0.2em] sm:tracking-[0.3em] uppercase text-primary-500/80 font-semibold text-center">
                 Estudio de Tatuajes Profesional
               </span>
-              <div className="w-6 h-px bg-primary-600/60" />
+              <div className="w-4 sm:w-8 h-px bg-primary-600/60" />
             </div>
 
             {/* Tagline */}
-            <h2 className="font-display text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-dark-50 mb-3 text-center lg:text-left tracking-[0.06em] leading-tight">
+            <h2 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-dark-50 mb-4 text-center lg:text-left tracking-[0.06em] leading-tight">
               Tinta que cuenta{" "}
               <span className="gradient-text font-bold">tu historia</span>
             </h2>
 
             {/* Sub-description */}
-            <p className="text-dark-400 text-sm md:text-base max-w-lg mx-auto lg:mx-0 mb-5 text-center lg:text-left leading-relaxed font-light tracking-wide">
+            <p className="text-dark-400 text-base md:text-lg lg:text-xl max-w-xl mx-auto lg:mx-0 mb-6 text-center lg:text-left leading-relaxed font-light tracking-wide">
               Diseños exclusivos creados a medida — cada pieza es una obra de
               arte única e irrepetible
             </p>
 
             {/* Decorative divider */}
-            <div className="flex items-center gap-3 mb-5">
+            <div className="flex items-center gap-4 mb-6">
               <div
-                className="w-10 sm:w-16 h-px"
+                className="w-12 sm:w-20 h-px"
                 style={{
                   background:
                     "linear-gradient(90deg, transparent, rgba(57,255,20,0.5))",
                 }}
               />
-              <Sparkles size={12} className="text-primary-500/70" />
+              <Sparkles size={16} className="text-primary-500/70" />
               <div
-                className="w-10 sm:w-16 h-px"
+                className="w-12 sm:w-20 h-px"
                 style={{
                   background:
                     "linear-gradient(270deg, transparent, rgba(57,255,20,0.5))",
@@ -145,7 +145,7 @@ export default function Hero() {
             </div>
 
             {/* CTA BUTTONS */}
-            <div className="flex flex-col sm:flex-row gap-3 justify-center lg:justify-start items-center mb-5">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start items-center mb-6">
               {/* Primary CTA */}
               <a
                 href="#booking"
@@ -155,10 +155,10 @@ export default function Hero() {
                     .querySelector("#booking")
                     ?.scrollIntoView({ behavior: "smooth" });
                 }}
-                className="group relative bg-primary-600 hover:bg-primary-500 text-dark-950 font-bold px-10 py-3 rounded-lg transition-all duration-500 transform hover:scale-105 hover:shadow-2xl hover:shadow-primary-600/25 active:scale-95 flex items-center gap-2 text-base overflow-hidden"
+                className="group relative bg-primary-600 hover:bg-primary-500 text-dark-950 font-bold px-12 py-4 rounded-lg transition-all duration-500 transform hover:scale-105 hover:shadow-2xl hover:shadow-primary-600/25 active:scale-95 flex items-center gap-3 text-lg overflow-hidden"
               >
                 <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/25 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700 ease-out" />
-                <Calendar size={16} className="relative" />
+                <Calendar size={20} className="relative" />
                 <span className="relative">Reservar Hora</span>
               </a>
 
@@ -171,15 +171,15 @@ export default function Hero() {
                     .querySelector("#gallery")
                     ?.scrollIntoView({ behavior: "smooth" });
                 }}
-                className="group relative border border-primary-600/50 text-primary-500 hover:bg-primary-600/10 hover:border-primary-500/80 font-semibold px-10 py-3 rounded-lg transition-all duration-500 transform hover:scale-105 active:scale-95 flex items-center gap-2 text-base"
+                className="group relative border border-primary-600/50 text-primary-500 hover:bg-primary-600/10 hover:border-primary-500/80 font-semibold px-12 py-4 rounded-lg transition-all duration-500 transform hover:scale-105 active:scale-95 flex items-center gap-3 text-lg"
               >
-                <Sparkles size={14} className="relative" />
+                <Sparkles size={18} className="relative" />
                 <span className="relative">Ver Trabajos</span>
               </a>
             </div>
 
             {/* STATS BAR */}
-            <div className="flex items-center justify-center lg:justify-start gap-6 md:gap-10">
+            <div className="flex items-center justify-center lg:justify-start gap-8 md:gap-12">
               {[
                 { value: "8+", label: "Años" },
                 { value: "2K+", label: "Tatuajes" },
@@ -192,10 +192,10 @@ export default function Hero() {
                   transition={{ delay: 1 + i * 0.15 }}
                   className="text-center"
                 >
-                  <p className="font-display text-xl md:text-2xl font-bold text-white">
+                  <p className="font-display text-2xl md:text-3xl font-bold text-white">
                     {stat.value}
                   </p>
-                  <p className="text-dark-500 text-xs tracking-[0.15em] uppercase mt-1">
+                  <p className="text-dark-500 text-xs md:text-sm tracking-[0.15em] uppercase mt-1">
                     {stat.label}
                   </p>
                 </motion.div>

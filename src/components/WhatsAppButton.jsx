@@ -71,6 +71,19 @@ export default function WhatsAppButton() {
         whileTap={{ scale: 0.9 }}
         aria-label={isOpen ? "Cerrar chat" : "Abrir chat de WhatsApp"}
       >
+        {/* Pulse animation - positioned behind the button */}
+        {!isOpen && (
+          <>
+            {[0, 1, 2].map((i) => (
+              <div
+                key={i}
+                className={`absolute inset-0 rounded-full bg-primary-600 pulse-ring pulse-ring-delay-${i + 1}`}
+                style={{ zIndex: -10 }}
+              />
+            ))}
+          </>
+        )}
+
         <AnimatePresence mode="wait">
           {isOpen ? (
             <motion.div
@@ -92,15 +105,6 @@ export default function WhatsAppButton() {
             </motion.div>
           )}
         </AnimatePresence>
-        
-        {/* Pulse animation */}
-        {!isOpen && (
-          <motion.div
-            className="absolute inset-0 rounded-full bg-primary-600"
-            animate={{ scale: [1, 1.5], opacity: [0.5, 0] }}
-            transition={{ duration: 1.5, repeat: Infinity }}
-          />
-        )}
       </motion.button>
     </>
   )

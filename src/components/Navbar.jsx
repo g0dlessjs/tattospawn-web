@@ -95,31 +95,54 @@ export default function Navbar() {
         {isOpen && (
           <motion.div
             key="mobile-menu"
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.25 }}
-            className="md:hidden bg-gradient-to-b from-gray-900 via-dark-950 to-dark-950 border-t border-dark-800 absolute top-20 left-0 right-0 shadow-lg shadow-dark-950/50 z-40"
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.95 }}
+            transition={{ duration: 0.3, ease: "easeOut" }}
+            className="md:hidden absolute top-20 left-4 right-4 z-40"
           >
-            <div className="px-6 py-6 space-y-5">
-              {navLinks.map((link) => (
-                <a
-                  key={link.name}
-                  href={link.href}
-                  onClick={(e) => handleClick(e, link.href)}
-                  className="block text-dark-200 hover:text-primary-500 transition-colors py-2 text-lg font-medium"
+            <div className="bg-dark-800/95 backdrop-blur-lg rounded-2xl border border-dark-700/50 shadow-2xl shadow-black/40 overflow-hidden">
+              {/* Decorative top line */}
+              <div className="h-1 bg-gradient-to-r from-transparent via-primary-600 to-transparent" />
+
+              <div className="px-6 py-6 space-y-2">
+                {navLinks.map((link, index) => (
+                  <motion.a
+                    key={link.name}
+                    href={link.href}
+                    onClick={(e) => handleClick(e, link.href)}
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: index * 0.05 }}
+                    className="flex items-center gap-3 text-dark-200 hover:text-primary-500 hover:bg-dark-700/50 transition-all py-3 px-4 rounded-xl text-lg font-medium"
+                  >
+                    <div className="w-1.5 h-1.5 rounded-full bg-primary-600/60" />
+                    {link.name}
+                  </motion.a>
+                ))}
+
+                {/* Divider */}
+                <div className="my-4 h-px bg-gradient-to-r from-transparent via-dark-600/50 to-transparent" />
+
+                {/* CTA Button */}
+                <motion.a
+                  href="#booking"
+                  onClick={(e) => handleClick(e, "#booking")}
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.2 }}
+                  className="block btn-primary text-center mt-2 py-3.5"
                 >
-                  {link.name}
-                </a>
-              ))}
-              <a
-                href="#booking"
-                onClick={(e) => handleClick(e, "#booking")}
-                className="block btn-primary text-center mt-4"
-              >
-                Reservar Ahora
-              </a>
+                  Reservar Ahora
+                </motion.a>
+              </div>
+
+              {/* Decorative bottom line */}
+              <div className="h-1 bg-gradient-to-r from-transparent via-primary-600/50 to-transparent" />
             </div>
+
+            {/* Subtle glow effect */}
+            <div className="absolute inset-0 -z-10 bg-primary-600/5 blur-2xl rounded-2xl" />
           </motion.div>
         )}
       </AnimatePresence>

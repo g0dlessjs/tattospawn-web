@@ -50,7 +50,7 @@ export default {
         }
       },
       fontFamily: {
-        sans: ['Inter', 'system-ui', 'sans-serif'],
+        sans: ['Cinzel', 'system-ui', 'sans-serif'],
         display: ['Cinzel', 'serif'],
       },
       animation: {

@@ -70,11 +70,11 @@ const availabilityOptions = [
 ]
 
 const budgetRanges = [
-  'Menos de 100€',
-  '100€ - 200€',
-  '200€ - 400€',
-  '400€ - 600€',
-  'Más de 600€',
+  'Menos de $50.000 CLP',
+  '$50.000 - $100.000 CLP',
+  '$100.000 - $200.000 CLP',
+  '$200.000 - $400.000 CLP',
+  'Más de $400.000 CLP',
   'A consultar',
 ]
 
@@ -223,7 +223,7 @@ export default function Booking() {
               <input
                 type="tel"
                 {...register('phone')}
-                placeholder="+34 600 000 000"
+                placeholder="+56 9 1234 5678"
                 className={inputClasses}
               />
             </InputField>

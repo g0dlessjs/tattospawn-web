@@ -49,7 +49,7 @@ export default function About() {
             <div className="relative rounded-2xl overflow-hidden shadow-2xl shadow-dark-950/50">
               <div className="aspect-[3/4] bg-dark-800">
                 <img
-                  src="https://images.unsplash.com/photo-1598371839696-5c5bb00bdc28?q=80&w=1000&auto=format&fit=crop"
+                  src="/hector.jpg"
                   alt="TattoSpawn - Tatuador profesional en su estudio"
                   className="w-full h-full object-cover"
                   loading="lazy"

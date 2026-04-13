@@ -26,7 +26,7 @@ function App() {
 
   return (
     <Router>
-      <div className="min-h-screen bg-dark-950">
+      <div className="min-h-screen bg-dark-950 overflow-x-hidden">
         <Navbar />
         <main>
           <Hero />
