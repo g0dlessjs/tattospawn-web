@@ -4,19 +4,20 @@ import { useInView } from 'framer-motion'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
-import { 
-  Calendar, 
-  User, 
-  Mail, 
-  Phone, 
-  Palette, 
-  Ruler, 
-  MapPin, 
-  MessageSquare, 
-  Upload, 
+import {
+  Calendar,
+  User,
+  Mail,
+  Phone,
+  Palette,
+  Ruler,
+  MapPin,
+  MessageSquare,
+  Upload,
   DollarSign,
   CheckCircle,
-  AlertCircle
+  AlertCircle,
+  MessageCircle
 } from 'lucide-react'
 
 const bookingSchema = z.object({
@@ -84,6 +85,9 @@ export default function Booking() {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isSubmitted, setIsSubmitted] = useState(false)
   const [imagePreview, setImagePreview] = useState(null)
+  const [cloudinaryUrl, setCloudinaryUrl] = useState(null)
+  const [imageUploading, setImageUploading] = useState(false)
+  const [imageError, setImageError] = useState(null)
 
   const {
     register,
@@ -93,6 +97,38 @@ export default function Booking() {
   } = useForm({
     resolver: zodResolver(bookingSchema),
   })
+
+  const uploadToCloudinary = async (file) => {
+    setImageUploading(true)
+    setImageError(null)
+    
+    const formData = new FormData()
+    formData.append('file', file)
+    formData.append('upload_preset', 's7pd5oq5')
+    formData.append('folder', 'tattospawn-references')
+
+    try {
+      const response = await fetch(
+        'https://api.cloudinary.com/v1_1/ddvevobum/image/upload',
+        {
+          method: 'POST',
+          body: formData,
+        }
+      )
+
+      if (!response.ok) {
+        throw new Error('Error al subir la imagen')
+      }
+
+      const data = await response.json()
+      setCloudinaryUrl(data.secure_url)
+      setImageUploading(false)
+    } catch (error) {
+      console.error('Error subiendo a Cloudinary:', error)
+      setImageError('No se pudo subir la imagen. Se enviará manualmente por WhatsApp.')
+      setImageUploading(false)
+    }
+  }
 
   const handleImageChange = (e) => {
     const file = e.target.files?.[0]
@@ -106,20 +142,43 @@ export default function Booking() {
         setImagePreview(reader.result)
       }
       reader.readAsDataURL(file)
+      
+      // Subir imagen a Cloudinary automáticamente
+      uploadToCloudinary(file)
     }
   }
 
   const onSubmit = async (data) => {
     setIsSubmitting(true)
-    
-    // Simulate API call
-    await new Promise((resolve) => setTimeout(resolve, 2000))
-    
-    console.log('Form data:', data)
+
+    // Construir mensaje para WhatsApp
+    const message = `*NUEVA RESERVA DE TATUAJE*
+
+*Nombre:* ${data.name}
+*Email:* ${data.email}
+*Telefono:* ${data.phone}
+*Edad:* ${data.age}
+
+*Tipo de tatuaje:* ${data.tattooType}
+*Tamano:* ${data.size}
+*Zona del cuerpo:* ${data.bodyZone}
+
+*Descripcion:* ${data.description}
+
+*Disponibilidad:* ${data.availability}
+*Presupuesto:* ${data.budget}
+
+${cloudinaryUrl ? `*Imagen de referencia:* ${cloudinaryUrl}` : '*Imagen de referencia:* Se enviara manualmente en este chat'}`
+
+    // Abrir WhatsApp con el mensaje
+    const whatsappUrl = `https://wa.me/56967668074?text=${encodeURIComponent(message)}`
+    window.open(whatsappUrl, '_blank', 'noopener,noreferrer')
+
     setIsSubmitting(false)
     setIsSubmitted(true)
     reset()
     setImagePreview(null)
+    setCloudinaryUrl(null)
 
     // Reset success message after 5 seconds
     setTimeout(() => setIsSubmitted(false), 5000)
@@ -323,7 +382,24 @@ export default function Booking() {
                 className="flex flex-col items-center justify-center w-full h-32 border-2 border-dashed border-dark-600 rounded-lg cursor-pointer hover:border-primary-600 transition-colors"
               >
                 {imagePreview ? (
-                  <img src={imagePreview} alt="Preview" className="h-full object-contain rounded-lg" />
+                  <div className="relative w-full h-full">
+                    <img src={imagePreview} alt="Preview" className="h-full object-contain rounded-lg" />
+                    {imageUploading && (
+                      <div className="absolute inset-0 bg-dark-950/70 flex items-center justify-center rounded-lg">
+                        <motion.div
+                          className="w-8 h-8 border-3 border-primary-600 border-t-transparent rounded-full"
+                          animate={{ rotate: 360 }}
+                          transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+                        />
+                      </div>
+                    )}
+                    {cloudinaryUrl && (
+                      <div className="absolute bottom-2 right-2 bg-green-600 text-white text-xs px-2 py-1 rounded-full flex items-center gap-1">
+                        <CheckCircle size={12} />
+                        Subida
+                      </div>
+                    )}
+                  </div>
                 ) : (
                   <>
                     <Upload size={24} className="text-dark-500 mb-2" />
@@ -335,13 +411,19 @@ export default function Booking() {
                 )}
               </label>
             </div>
+            {imageError && (
+              <p className="text-primary-500 text-sm flex items-center gap-1">
+                <AlertCircle size={14} />
+                {imageError}
+              </p>
+            )}
           </div>
 
           {/* Submit Button */}
           <motion.button
             type="submit"
             disabled={isSubmitting}
-            className="w-full bg-primary-600 hover:bg-primary-500 text-dark-950 font-semibold py-4 text-lg flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed rounded-lg transition-all duration-300 transform hover:scale-[1.02] active:scale-[0.98] hover:shadow-lg hover:shadow-primary-600/30"
+            className="w-full bg-green-600 hover:bg-green-500 text-white font-semibold py-4 text-lg flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed rounded-lg transition-all duration-300 transform hover:scale-[1.02] active:scale-[0.98] hover:shadow-lg hover:shadow-green-600/30"
             whileHover={{ scale: isSubmitting ? 1 : 1.02 }}
             whileTap={{ scale: isSubmitting ? 1 : 0.98 }}
           >
@@ -352,12 +434,12 @@ export default function Booking() {
                   animate={{ rotate: 360 }}
                   transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
                 />
-                Enviando...
+                Abriendo WhatsApp...
               </>
             ) : (
               <>
-                <Calendar size={20} />
-                Enviar Reserva
+                <MessageCircle size={20} />
+                Enviar por WhatsApp
               </>
             )}
           </motion.button>
